@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Card, CardContent } from "../ui/Card"
 import { Badge } from "../ui/Badge"
 import { MapPin, Clock } from "lucide-react"
+import { decodeHtmlEntities, stripHtml } from "@/lib/utils"
 
 interface EventCardProps {
     id: number
@@ -26,7 +27,8 @@ export function EventCard({
     const month = dateObj.toLocaleDateString("de-AT", { month: "short" })
     const time = dateObj.toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" })
 
-    const cleanExcerpt = excerpt ? excerpt.replace(/(<([^>]+)>)/gi, "") : ""
+    const decodedTitle = decodeHtmlEntities(title)
+    const cleanExcerpt = excerpt ? stripHtml(excerpt) : ""
 
     return (
         <Link href={`/veranstaltungen/${slug}`} className="block group">
@@ -42,7 +44,7 @@ export function EventCard({
                 <CardContent className="p-6 flex-1 flex flex-col justify-center">
                     <div className="flex flex-wrap items-center gap-3 mb-2">
                         <h3 className="text-xl font-bold text-u20-gray-dark font-heading group-hover:text-u20-orange transition-colors">
-                            {title}
+                            {decodedTitle}
                         </h3>
                         {isFeatured && <Badge variant="accent">Tipp</Badge>}
                     </div>
@@ -55,7 +57,7 @@ export function EventCard({
                         {venue && (
                             <span className="flex items-center gap-1.5 line-clamp-1">
                                 <MapPin className="w-4 h-4" />
-                                {venue}
+                                {decodeHtmlEntities(venue)}
                             </span>
                         )}
                     </div>

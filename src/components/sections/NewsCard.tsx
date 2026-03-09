@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardTitle, CardDescription } from "../ui/Card"
+import { decodeHtmlEntities, stripHtml } from "@/lib/utils"
 
 interface NewsCardProps {
     id: number
@@ -12,7 +13,8 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ title, date, excerpt, imageUrl, slug }: NewsCardProps) {
-    const cleanExcerpt = excerpt.replace(/(<([^>]+)>)/gi, "")
+    const cleanExcerpt = stripHtml(excerpt)
+    const decodedTitle = decodeHtmlEntities(title)
 
     return (
         <Link href={`/news/${slug}`} className="block group">
@@ -40,7 +42,7 @@ export function NewsCard({ title, date, excerpt, imageUrl, slug }: NewsCardProps
                         })}
                     </CardDescription>
                     <CardTitle className="mb-3 group-hover:text-u20-orange transition-colors line-clamp-2 text-xl">
-                        {title}
+                        {decodedTitle}
                     </CardTitle>
                     <p className="text-u20-gray line-clamp-3 text-sm leading-relaxed">
                         {cleanExcerpt}

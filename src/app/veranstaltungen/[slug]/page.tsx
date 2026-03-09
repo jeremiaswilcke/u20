@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/Container"
 import { RichTextRenderer } from "@/components/wp/RichTextRenderer"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
+import { decodeHtmlEntities } from "@/lib/utils"
 import { fetchWP } from "@/lib/wp/api"
 import { WpEvent } from "@/lib/wp/types"
 import { notFound } from "next/navigation"
@@ -61,7 +62,7 @@ export default async function EventDetailPage({ params }: Props) {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-8 font-heading text-u20-gray-dark">
-          {event.title}
+          {decodeHtmlEntities(event.title)}
         </h1>
 
         {/* Event Meta */}
