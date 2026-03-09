@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { Mail, MapPin, Instagram } from "lucide-react"
 import { Container } from "@/components/layout/Container"
 import { HeroSection } from "@/components/sections/HeroSection"
@@ -40,7 +41,9 @@ export default async function KontaktPage() {
             {/* Form — takes more space */}
             <div className="lg:col-span-3">
               <ScrollReveal>
-                <ContactForm />
+                <Suspense fallback={<div className="bg-white rounded-3xl p-10 border border-slate-100 animate-pulse h-96" />}>
+                  <ContactForm />
+                </Suspense>
               </ScrollReveal>
             </div>
 

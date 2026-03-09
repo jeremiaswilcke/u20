@@ -93,9 +93,9 @@ export default async function SchreibKlassePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {requirements.map((item: { title: string; value: string }, i: number) => (
               <ScrollReveal key={i} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-8 text-center shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                  <p className="text-sm text-u20-orange font-medium uppercase tracking-wider mb-3">{item.title}</p>
-                  <p className="text-xl font-bold text-u20-gray-dark font-heading">{item.value}</p>
+                <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                  <p className="text-xs text-u20-orange font-medium uppercase tracking-wider mb-3">{item.title}</p>
+                  <p className="text-base font-bold text-u20-gray-dark leading-tight break-words">{item.value}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -112,7 +112,7 @@ export default async function SchreibKlassePage() {
               Wir freuen uns über Anfragen von Schulen, Jugendzentren und Bildungseinrichtungen.
             </p>
             <a
-              href="mailto:hallo@u20poetryslam.at"
+              href="/kontakt?anfrage=workshop-schule"
               className="inline-flex items-center justify-center h-12 rounded-full px-8 bg-u20-orange text-white hover:bg-u20-orange-dark text-base font-medium transition-all shadow-lg shadow-u20-orange/25"
             >
               Kontakt aufnehmen
