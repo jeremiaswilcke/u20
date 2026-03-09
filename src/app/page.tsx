@@ -140,7 +140,7 @@ export default async function Home() {
             <div className="flex justify-between items-end mb-12">
               <div>
                 <p className="text-u20-pink font-medium text-sm uppercase tracking-wider mb-2">Aktuelles</p>
-                <h2 className="text-3xl md:text-4xl font-bold font-heading text-u20-gray-dark">Neues aus dem Verein</h2>
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-u20-gray-dark">Neues vom Poetry Slam Nachwuchs</h2>
               </div>
               <Button asChild variant="ghost" className="hidden sm:inline-flex">
                 <Link href="/news">Alle News →</Link>
