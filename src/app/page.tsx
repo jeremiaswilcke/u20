@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/Container"
 import { VideoHero } from "@/components/sections/VideoHero"
 import { EventCard } from "@/components/sections/EventCard"
 import { NewsCard } from "@/components/sections/NewsCard"
+import { TestimonialSlider } from "@/components/sections/TestimonialSlider"
 import { ScrollReveal } from "@/components/ui/ScrollReveal"
 import { Button } from "@/components/ui/Button"
 import Link from "next/link"
@@ -173,6 +174,25 @@ export default async function Home() {
               </div>
             </ScrollReveal>
           )}
+        </Container>
+      </section>
+
+      {/* LEHRERSTIMMEN / TESTIMONIALS */}
+      <section className="py-28 bg-white relative overflow-hidden">
+        {/* Decorative */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-u20-orange/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-u20-pink/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+
+        <Container className="relative z-10">
+          <ScrollReveal>
+            <div className="text-center mb-4">
+              <p className="text-u20-purple font-medium text-sm uppercase tracking-wider mb-2">Stimmen aus Schulen</p>
+              <h2 className="text-3xl md:text-4xl font-bold font-heading text-u20-gray-dark">Was Lehrer*innen sagen</h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <TestimonialSlider />
+          </ScrollReveal>
         </Container>
       </section>
     </>
