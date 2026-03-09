@@ -11,6 +11,8 @@
           "fields": {
             "hero_title": { "type": "text", "label": "Titel" },
             "hero_description": { "type": "textarea", "label": "Beschreibung" },
+            "hero_video": { "type": "text", "label": "Video URL (MP4)" },
+            "hero_poster": { "type": "image", "label": "Video Poster / Fallback Bild" },
             "hero_image": { "type": "image", "label": "Hintergrundbild" },
             "primary_cta_text": { "type": "text", "label": "Primärer Button Text" },
             "primary_cta_link": { "type": "text", "label": "Primärer Button Link" },

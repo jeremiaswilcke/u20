@@ -12,13 +12,12 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ title, date, excerpt, imageUrl, slug }: NewsCardProps) {
-    // Strip HTML from excerpt if it comes raw from WP
     const cleanExcerpt = excerpt.replace(/(<([^>]+)>)/gi, "")
 
     return (
         <Link href={`/news/${slug}`} className="block group">
-            <Card className="h-full border-transparent shadow-sm hover:shadow-xl transition-all duration-300">
-                <div className="relative w-full h-48 bg-slate-100 overflow-hidden">
+            <Card className="h-full">
+                <div className="relative w-full h-52 bg-slate-50 overflow-hidden">
                     {imageUrl ? (
                         <Image
                             src={imageUrl}
@@ -27,23 +26,23 @@ export function NewsCard({ title, date, excerpt, imageUrl, slug }: NewsCardProps
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-300 font-sans text-xl">
-                            U20 News
+                        <div className="absolute inset-0 bg-gradient-to-br from-u20-orange/10 to-u20-pink/10 flex items-center justify-center">
+                            <span className="font-heading text-u20-orange/30 text-2xl">U20</span>
                         </div>
                     )}
                 </div>
                 <CardContent className="p-6">
-                    <CardDescription className="mb-2 text-u20-primary font-medium tracking-wide">
+                    <CardDescription className="mb-2 text-u20-orange font-medium tracking-wide text-xs uppercase">
                         {new Date(date).toLocaleDateString("de-AT", {
                             day: "2-digit",
                             month: "long",
                             year: "numeric"
                         })}
                     </CardDescription>
-                    <CardTitle className="mb-3 group-hover:text-u20-primary transition-colors line-clamp-2 text-xl">
+                    <CardTitle className="mb-3 group-hover:text-u20-orange transition-colors line-clamp-2 text-xl">
                         {title}
                     </CardTitle>
-                    <p className="text-slate-600 line-clamp-3 text-sm leading-relaxed">
+                    <p className="text-u20-gray line-clamp-3 text-sm leading-relaxed">
                         {cleanExcerpt}
                     </p>
                 </CardContent>

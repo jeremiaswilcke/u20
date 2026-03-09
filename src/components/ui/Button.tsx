@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     asChild?: boolean
-    variant?: "default" | "outline" | "ghost" | "link" | "accent"
+    variant?: "default" | "outline" | "ghost" | "link" | "accent" | "white"
     size?: "default" | "sm" | "lg" | "icon"
 }
 
@@ -15,17 +15,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <Comp
                 className={cn(
-                    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+                    "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-u20-orange focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
                     {
-                        "bg-u20-primary text-white hover:bg-u20-600": variant === "default",
-                        "bg-u20-accent text-white hover:bg-rose-700": variant === "accent",
-                        "border border-input bg-background hover:bg-slate-100 hover:text-foreground":
-                            variant === "outline",
-                        "hover:bg-slate-100 hover:text-foreground": variant === "ghost",
-                        "text-u20-primary underline-offset-4 hover:underline": variant === "link",
-                        "h-10 px-4 py-2": size === "default",
-                        "h-9 rounded-md px-3": size === "sm",
-                        "h-11 rounded-md px-8": size === "lg",
+                        "bg-u20-orange text-white hover:bg-u20-orange-dark shadow-lg shadow-u20-orange/25 hover:shadow-xl hover:shadow-u20-orange/30": variant === "default",
+                        "bg-u20-pink text-white hover:bg-u20-pink-dark shadow-lg shadow-u20-pink/25": variant === "accent",
+                        "border-2 border-u20-gray/20 bg-transparent hover:bg-u20-gray/5 text-u20-gray": variant === "outline",
+                        "hover:bg-u20-gray/5 text-u20-gray": variant === "ghost",
+                        "text-u20-orange underline-offset-4 hover:underline": variant === "link",
+                        "bg-white text-u20-gray hover:bg-white/90 shadow-lg": variant === "white",
+                        "h-10 px-6 py-2": size === "default",
+                        "h-9 px-4": size === "sm",
+                        "h-12 px-8 text-base": size === "lg",
                         "h-10 w-10": size === "icon",
                     },
                     className

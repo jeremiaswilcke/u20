@@ -4,16 +4,35 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
+    --background: #fafafa;
+    --foreground: #1a1a1a;
+    --u20-orange: #FF9900;
+    --u20-pink: #D6165F;
+    --u20-purple: #800080;
+    --u20-gray: #4D4D4D;
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-white text-u20-gray antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-righteous), sans-serif;
   }
 }
 
 ::selection {
-  background-color: #2b86c7;
+  background-color: #FF9900;
   color: white;
+}
+
+/* Smooth scroll reveal animation helper */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
