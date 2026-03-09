@@ -1,0 +1,118 @@
+{
+  "pages": {
+    "home": {
+      "title": "Startseite",
+      "slug": "home",
+      "icon": "dashicons-admin-home",
+      "sections": {
+        "hero": {
+          "title": "Hero Slider",
+          "type": "repeater",
+          "fields": {
+            "hero_title": { "type": "text", "label": "Titel" },
+            "hero_description": { "type": "textarea", "label": "Beschreibung" },
+            "hero_image": { "type": "image", "label": "Hintergrundbild" },
+            "primary_cta_text": { "type": "text", "label": "Primärer Button Text" },
+            "primary_cta_link": { "type": "text", "label": "Primärer Button Link" },
+            "secondary_cta_text": { "type": "text", "label": "Sekundärer Button Text" },
+            "secondary_cta_link": { "type": "text", "label": "Sekundärer Button Link" }
+          }
+        },
+        "workshop": {
+          "title": "schreib' KLASSE! (Workshop Intro)",
+          "type": "inline",
+          "fields": {
+            "title": { "type": "text", "label": "Titel" },
+            "description": { "type": "textarea", "label": "Beschreibung" },
+            "cta_text": { "type": "text", "label": "Button Text" },
+            "cta_link": { "type": "text", "label": "Button Link" }
+          }
+        },
+        "contact_block": {
+          "title": "Kontakt Banner",
+          "type": "inline",
+          "fields": {
+             "title": { "type": "text", "label": "Titel" },
+             "description": { "type": "textarea", "label": "Beschreibung" },
+             "cta_text": { "type": "text", "label": "Button Text" },
+             "cta_link": { "type": "text", "label": "Button Link" }
+          }
+        }
+      }
+    },
+    "schreib-klasse": {
+      "title": "Workshops (schreib' KLASSE!)",
+      "slug": "schreib-klasse",
+      "icon": "dashicons-welcome-learn-more",
+      "sections": {
+        "hero": {
+            "title": "Hero Bereich",
+            "type": "inline",
+            "fields": {
+                "hero_title": { "type": "text", "label": "Titel" },
+                "hero_description": { "type": "textarea", "label": "Beschreibung" },
+                "hero_image": { "type": "image", "label": "Bild" }
+            }
+        },
+        "info": {
+            "title": "Workshop Info (Für Schulen/Lehrer)",
+            "type": "inline",
+            "fields": {
+                "content": { "type": "textarea", "label": "Inhalt / Ausschreibungstext" },
+                "image": { "type": "image", "label": "Begleitbild" }
+            }
+        },
+        "requirements": {
+             "title": "Anforderungen & Details",
+             "type": "repeater",
+             "fields": {
+                 "title": { "type": "text", "label": "Titel (z.B. Dauer, Alter)" },
+                 "value": { "type": "text", "label": "Wert" }
+             }
+        }
+      }
+    },
+    "team": {
+        "title": "Team",
+        "slug": "team",
+        "icon": "dashicons-groups",
+        "sections": {
+            "hero": {
+                 "title": "Hero Bereich",
+                 "type": "inline",
+                 "fields": {
+                     "hero_title": { "type": "text", "label": "Titel" },
+                     "hero_description": { "type": "textarea", "label": "Beschreibung" }
+                 }
+            },
+            "members": {
+                "title": "Teammitglieder",
+                "type": "cpt",
+                "fields": {
+                    "role": { "type": "text", "label": "Rolle / Funktion" },
+                    "description": { "type": "textarea", "label": "Kurzbeschreibung" },
+                    "image": { "type": "image", "label": "Profilbild" },
+                    "email": { "type": "text", "label": "E-Mail (optional)" }
+                }
+            }
+        }
+    },
+    "kontakt": {
+        "title": "Kontakt",
+        "slug": "kontakt",
+        "icon": "dashicons-email",
+        "sections": {
+            "intro": {
+                "title": "Intro Text",
+                "type": "inline",
+                "fields": {
+                    "title": { "type": "text", "label": "Titel" },
+                    "description": { "type": "textarea", "label": "Beschreibungtext" },
+                    "email": { "type": "text", "label": "Allgemeine E-Mail" },
+                    "address": { "type": "textarea", "label": "Adresse / Location" }
+                }
+            }
+        }
+    }
+  }
+}
