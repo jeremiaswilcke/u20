@@ -1,125 +1,268 @@
-import type { Metadata } from "next"
-import Image from "next/image"
-import { Container } from "@/components/layout/Container"
-import { ScrollReveal } from "@/components/ui/ScrollReveal"
-import { RichTextRenderer } from "@/components/wp/RichTextRenderer"
-import { fetchWP } from "@/lib/wp/api"
-import { WWDPageData } from "@/lib/wp/types"
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { FaqItem } from "@/components/sections/FaqItem";
 
 export const metadata: Metadata = {
-  title: "schreib\u2019 KLASSE! \u2013 Workshops",
-  description: "Workshop-Programm des U20 Poetry Slam Wien für Schulen und Jugendliche. Kreatives Schreiben trifft Performance.",
-}
+  title: "schreib' KLASSE!",
+  description:
+    "Der Schreibworkshop vor dem Slam. Zwei bis drei Stunden, kleine Gruppe, kein Druck — und ein Text, den du danach auf die Bühne bringen könntest.",
+};
 
-async function getWorkshopData() {
-  try {
-    const pages = await fetchWP<WWDPageData[]>('/wwd/v1/pages?slug=schreib-klasse', { next: { revalidate: 60 } })
-    return pages[0] || null
-  } catch {
-    return null
-  }
-}
+const STEPS = [
+  {
+    num: "01",
+    title: "Ankommen.",
+    desc: "Kennenlernrunde, Getränk in die Hand, Blätter verteilen. Wir fragen nicht, ob du schon mal geschrieben hast — wir legen los.",
+  },
+  {
+    num: "02",
+    title: "Impulse.",
+    desc: "Wir geben dir Schreibaufträge, die wirken: ein Objekt, ein Geruch, ein Satzanfang. Daraus entstehen Texte — oft überraschendere als du denkst.",
+  },
+  {
+    num: "03",
+    title: "Vortragen.",
+    desc: "Nur wer will. Wir üben laut lesen, atmen, Blickkontakt — keine Schauspiel-Tricks, nur deine echten Worte.",
+  },
+  {
+    num: "04",
+    title: "Feedback.",
+    desc: "Wohlwollend, konkret, nie gemein. Wir sagen dir, was funktioniert — und du entscheidest, was du daraus machst.",
+  },
+  {
+    num: "05",
+    title: "Bühne — wenn du willst.",
+    desc: "Beim Slam direkt danach kannst du deinen Text vortragen. Kannst aber auch einfach zuschauen. Beides ist cool.",
+  },
+];
 
-export default async function SchreibKlassePage() {
-  const pageData = await getWorkshopData()
+const TESTIMONIALS = [
+  {
+    quote:
+      "Ich hab den Text in 40 Minuten geschrieben. Im Slam danach hab ich Platz 3 gemacht. Was zur Hölle.",
+    who: "Mira, 16 · Wien",
+  },
+  {
+    quote: "Bin nur hin, weil ein Freund mich mitgeschleppt hat. Jetzt geh ich jeden Monat.",
+    who: "Ali, 18 · Wiener Neustadt",
+  },
+  {
+    quote:
+      "Ich dachte, Poetry Slam wär was für Erwachsene. War es nicht. Es war für mich.",
+    who: "Sophie, 14 · St. Pölten",
+  },
+];
 
-  const heroTitle = pageData?.meta?._wwd_hero_hero_title || "schreib\u2019 KLASSE!"
-  const heroDesc = pageData?.meta?._wwd_hero_hero_description || "Wir kommen an eure Schule. Kreatives Schreiben trifft Performance \u2013 mit echten Slam-Poet*innen."
-
-  const infoContent = pageData?.meta?._wwd_info_content || "Das Workshop-Programm <strong>schreib\u2019 KLASSE!</strong> bringt Poetry Slam direkt ins Klassenzimmer. In mehrstündigen Workshops arbeiten professionelle Slam-Poet*innen gemeinsam mit Schüler*innen an eigenen Texten \u2013 von der Idee bis zur Bühne.<br/><br/>Dabei steht nicht nur das Schreiben im Fokus, sondern auch der Mut, die eigene Stimme zu erheben. Am Ende jedes Workshops gibt es eine kleine Aufführung, bei der die Teilnehmer*innen ihre Texte vor Publikum präsentieren."
-  const infoImage = pageData?.meta?._wwd_info_image || null
-
-  const requirements = pageData?.meta?._wwd_requirements_items || [
-    { title: "Alter", value: "14\u201320 Jahre" },
-    { title: "Dauer", value: "3\u20135 Unterrichtseinheiten" },
-    { title: "Gruppengröße", value: "Max. 30 Schüler*innen" },
-    { title: "Kosten", value: "Auf Anfrage" },
-  ]
-
+export default function SchreibKlassePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-24 lg:py-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-u20-purple via-u20-pink to-u20-orange -z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.15),transparent_50%)] -z-10" />
+      {/* PAGE HERO */}
+      <section className="page-hero">
+        <div className="container-u">
+          <div className="crumbs">
+            <Link href="/">Home</Link> · schreib&apos; KLASSE!
+          </div>
+          <h1>schreib&apos; KLASSE!</h1>
+          <p className="lede">
+            Der Workshop vor dem Slam. Du schreibst dort den Text, den du
+            danach auf die Bühne bringen könntest — oder auch einfach nur für
+            dich behalten. Keine Bewertung, kein Druck, kein Lehrer-Blick über
+            die Schulter.
+          </p>
+        </div>
+      </section>
 
-        <Container>
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-heading text-white mb-6">
-              {heroTitle}
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
-              {heroDesc}
+      {/* STEPS */}
+      <section className="u-section">
+        <div className="container-u">
+          <ScrollReveal className="section-title-wrap">
+            <h2>So läuft&apos;s ab.</h2>
+            <p>
+              Zwei bis drei Stunden, in der Regel am Slam-Tag. Kleine Gruppe,
+              Maximum 15 Teilnehmer:innen.
             </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Workshop Info */}
-      <section className="py-24 bg-white">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal>
-              <p className="text-u20-orange font-medium text-sm uppercase tracking-wider mb-3">Unser Programm</p>
-              <h2 className="text-3xl md:text-4xl font-bold font-heading text-u20-gray-dark mb-6">Was ist schreib&apos; KLASSE!?</h2>
-              <RichTextRenderer html={infoContent} />
-            </ScrollReveal>
-            <ScrollReveal direction="left">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-slate-50">
-                {infoImage ? (
-                  <Image
-                    src={infoImage}
-                    alt="schreib' KLASSE! Workshop"
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-u20-orange/10 to-u20-pink/10 flex items-center justify-center">
-                    <span className="font-heading text-u20-orange/20 text-4xl">Workshop</span>
-                  </div>
-                )}
-              </div>
-            </ScrollReveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* Requirements */}
-      <section className="py-24 bg-slate-50">
-        <Container>
-          <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-center text-u20-gray-dark mb-14">Details & Anforderungen</h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {requirements.map((item: { title: string; value: string }, i: number) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                  <p className="text-xs text-u20-orange font-medium uppercase tracking-wider mb-3">{item.title}</p>
-                  <p className="text-base font-bold text-u20-gray-dark leading-tight break-words">{item.value}</p>
+          <ol className="steps-grid">
+            {STEPS.map((s) => (
+              <li key={s.num} className="step-card reveal">
+                <span className="step-num">{s.num}</span>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* FOR WHOM */}
+      <section className="bg-soft u-section">
+        <div className="container-u about-grid">
+          <ScrollReveal>
+            <span className="eyebrow">Für wen?</span>
+            <p className="about-quote">
+              Für dich — wenn du unter 20 bist und irgendwas zu sagen hast.
+            </p>
+            <div className="about-text">
+              <p>
+                Du brauchst keine Vorerfahrung. Keinen fertigen Text. Keinen
+                Plan. Du musst auch nicht „gut schreiben können" — was das
+                überhaupt heißen soll, bleibt eine offene Frage.
+              </p>
+              <p>
+                Was du mitbringen solltest: Offenheit, 2–3 Stunden Zeit und die
+                Bereitschaft, ein paar Minuten lang nicht auf dein Handy zu
+                schauen.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <span className="eyebrow">Was du lernst</span>
+            <ol className="rules-list">
+              <li>
+                <div>
+                  <strong>Schreibimpulse.</strong>
+                  <span>Wie du aus dem Nichts Texte entstehen lässt.</span>
                 </div>
-              </ScrollReveal>
+              </li>
+              <li>
+                <div>
+                  <strong>Struktur.</strong>
+                  <span>
+                    Wann ein Text seinen Rhythmus findet — und wann er zu viel
+                    schnackt.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Stimme.</strong>
+                  <span>Wie deine Sprache klingt, wenn du ehrlich bist.</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Bühnen-Basics.</strong>
+                  <span>
+                    Atmen. Stehen. Pausen. Blick. Keine Schauspielschule,
+                    versprochen.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Mut.</strong>
+                  <span>
+                    Der entsteht automatisch, irgendwo zwischen 01 und 04.
+                  </span>
+                </div>
+              </li>
+            </ol>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* PRICE CTA */}
+      <section className="u-section">
+        <div className="container-u">
+          <div
+            className="workshop-block"
+            style={{ gridTemplateColumns: "1fr 1fr" }}
+          >
+            <ScrollReveal className="workshop-content">
+              <span className="eyebrow">Jetzt anmelden</span>
+              <h2>
+                €8 für einen
+                <br />
+                Nachmittag,
+                <br />
+                der hält.
+              </h2>
+              <p className="lead">
+                Der U20 Slam danach ist für Workshop-Teilnehmer:innen
+                kostenlos — bei manchen Terminen zahlst du nur symbolisch
+                €1,–.
+              </p>
+              <ul className="workshop-list">
+                <li>Alle Materialien gestellt</li>
+                <li>Getränk inklusive</li>
+                <li>Kein Vorwissen nötig</li>
+                <li>Slam danach gratis / vergünstigt</li>
+              </ul>
+              <Link className="btn" href="/#anmeldung">
+                Platz sichern →
+              </Link>
+            </ScrollReveal>
+            <ScrollReveal className="workshop-card">
+              <span className="small">Nächster Termin</span>
+              <div className="price-big">06.05.</div>
+              <div className="subtitle">16:00 – 18:00 · Dschungel Wien</div>
+              <ul className="feature-list">
+                <li>Max. 15 Teilnehmer:innen</li>
+                <li>Leitung: Annalena Schuh</li>
+                <li>Direkt vor dem U20 Slam</li>
+                <li>Anmeldung bis 2 Tage vorher</li>
+              </ul>
+              <Link className="btn btn-magenta" href="/#anmeldung">
+                Anmelden
+              </Link>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="bg-soft u-section">
+        <div className="container-u">
+          <ScrollReveal className="section-title-wrap">
+            <h2>Das sagen Teilnehmer:innen.</h2>
+            <p>Stimmen aus den letzten Workshops — gekürzt, aber echt.</p>
+          </ScrollReveal>
+          <div className="testi-grid">
+            {TESTIMONIALS.map((t, i) => (
+              <figure key={i} className="testi-card reveal">
+                <blockquote>{t.quote}</blockquote>
+                <figcaption>{t.who}</figcaption>
+              </figure>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-white">
-        <Container className="text-center max-w-2xl">
-          <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-u20-gray-dark mb-4">Interesse?</h2>
-            <p className="text-u20-gray text-lg mb-8 leading-relaxed">
-              Wir freuen uns über Anfragen von Schulen, Jugendzentren und Bildungseinrichtungen.
+      {/* FAQ TEASER */}
+      <section className="u-section">
+        <div className="container-u">
+          <ScrollReveal className="section-title-wrap">
+            <h2>Noch Fragen?</h2>
+            <p>
+              Hier die häufigsten. Ausführlicher im <Link href="/faq">FAQ</Link>.
             </p>
-            <a
-              href="/kontakt?anfrage=workshop-schule"
-              className="inline-flex items-center justify-center h-12 rounded-full px-8 bg-u20-orange text-white hover:bg-u20-orange-dark text-base font-medium transition-all shadow-lg shadow-u20-orange/25"
-            >
-              Kontakt aufnehmen
-            </a>
           </ScrollReveal>
-        </Container>
+          <div className="faq-list">
+            <FaqItem question="Muss ich danach auf die Bühne?" defaultOpen>
+              Nein. Wirklich nicht. Viele kommen zum Workshop, um zu
+              schreiben, und sehen sich den Slam danach einfach nur an.
+              Beides okay.
+            </FaqItem>
+            <FaqItem question="Was, wenn ich noch nie etwas geschrieben habe?">
+              Genau für dich ist das hier. Die meisten Teilnehmer:innen haben
+              vorher noch nie einen „richtigen" Text geschrieben. Das ist
+              Feature, nicht Bug.
+            </FaqItem>
+            <FaqItem question="Kann ich mit meiner Schulklasse kommen?">
+              Ja! Wir machen regelmäßig Klassen-Workshops, teilweise auch
+              direkt in der Schule. Details unter{" "}
+              <Link href="/lehrer">Für Lehrer:innen</Link>.
+            </FaqItem>
+            <FaqItem question="Gibt's eine Warteliste, wenn voll?">
+              Ja, einfach per Mail an{" "}
+              <a href="mailto:info@u20poetryslam.at">info@u20poetryslam.at</a>.
+              Wir rücken bei Absagen nach — das kommt öfter vor, als du
+              denkst.
+            </FaqItem>
+          </div>
+        </div>
       </section>
     </>
-  )
+  );
 }

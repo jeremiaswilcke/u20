@@ -1,56 +1,49 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface ScrollRevealProps {
-  children: React.ReactNode
-  className?: string
-  delay?: number
-  direction?: "up" | "left" | "right"
+type Tag = "div" | "section" | "article" | "span" | "li" | "ol" | "ul";
+
+interface ScrollRevealProps extends React.HTMLAttributes<HTMLElement> {
+  as?: Tag;
+  delay?: number;
 }
 
-export function ScrollReveal({ children, className, delay = 0, direction = "up" }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null)
+export function ScrollReveal({
+  children,
+  className,
+  as = "div",
+  delay = 0,
+  ...props
+}: ScrollRevealProps) {
+  const ref = React.useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.classList.add("opacity-100", "translate-y-0", "translate-x-0")
-            el.classList.remove(
-              "opacity-0",
-              direction === "up" ? "translate-y-8" : "",
-              direction === "left" ? "translate-x-8" : "",
-              direction === "right" ? "-translate-x-8" : ""
-            )
-          }, delay)
-          observer.unobserve(el)
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => el.classList.add("in"), delay);
+            observer.unobserve(el);
+          }
+        });
       },
-      { threshold: 0.15 }
-    )
+      { threshold: 0.12 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
 
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [delay, direction])
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all duration-700 ease-out opacity-0",
-        direction === "up" && "translate-y-8",
-        direction === "left" && "translate-x-8",
-        direction === "right" && "-translate-x-8",
-        className
-      )}
-    >
-      {children}
-    </div>
-  )
+  return React.createElement(
+    as,
+    {
+      ref,
+      className: cn("reveal", className),
+      ...props,
+    },
+    children
+  );
 }

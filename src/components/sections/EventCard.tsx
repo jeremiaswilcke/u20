@@ -1,75 +1,65 @@
-import Link from "next/link"
-import { Card, CardContent } from "../ui/Card"
-import { Badge } from "../ui/Badge"
-import { MapPin, Clock } from "lucide-react"
-import { decodeHtmlEntities, stripHtml } from "@/lib/utils"
+import Link from "next/link";
+import { decodeHtmlEntities, stripHtml } from "@/lib/utils";
 
 interface EventCardProps {
-    id: number
-    title: string
-    startDate: string
-    venue?: string
-    excerpt?: string
-    slug: string
-    isFeatured?: boolean
+  title: string;
+  startDate: string;
+  venue?: string;
+  excerpt?: string;
+  slug: string;
+  price?: string;
 }
 
+const MONTHS = [
+  "JAN", "FEB", "MÄR", "APR", "MAI", "JUN",
+  "JUL", "AUG", "SEP", "OKT", "NOV", "DEZ",
+];
+
 export function EventCard({
-    title,
-    startDate,
-    venue,
-    excerpt,
-    slug,
-    isFeatured
+  title,
+  startDate,
+  venue,
+  excerpt,
+  slug,
+  price = "€ 8,–",
 }: EventCardProps) {
-    const dateObj = new Date(startDate)
-    const day = dateObj.toLocaleDateString("de-AT", { day: "2-digit" })
-    const month = dateObj.toLocaleDateString("de-AT", { month: "short" })
-    const time = dateObj.toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" })
+  const date = new Date(startDate);
+  const day = String(date.getDate()).padStart(2, "0");
+  const mon = MONTHS[date.getMonth()];
+  const time = date.toLocaleTimeString("de-AT", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-    const decodedTitle = decodeHtmlEntities(title)
-    const cleanExcerpt = excerpt ? stripHtml(excerpt) : ""
+  const decodedTitle = decodeHtmlEntities(title);
+  const cleanExcerpt = excerpt ? stripHtml(excerpt) : "";
 
-    return (
-        <Link href={`/veranstaltungen/${slug}`} className="block group">
-            <Card className={`h-full flex flex-col md:flex-row overflow-hidden ${isFeatured ? 'ring-2 ring-u20-orange' : ''}`}>
-
-                {/* Date block */}
-                <div className="bg-u20-orange/5 text-u20-orange md:w-32 flex flex-col items-center justify-center py-6 px-4 border-b md:border-b-0 md:border-r border-slate-100 group-hover:bg-u20-orange group-hover:text-white transition-colors duration-300">
-                    <span className="text-4xl font-bold font-heading">{day}.</span>
-                    <span className="text-lg font-medium">{month}</span>
-                </div>
-
-                {/* Content block */}
-                <CardContent className="p-6 flex-1 flex flex-col justify-center">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-u20-gray-dark font-heading group-hover:text-u20-orange transition-colors">
-                            {decodedTitle}
-                        </h3>
-                        {isFeatured && <Badge variant="accent">Tipp</Badge>}
-                    </div>
-
-                    <div className="flex items-center gap-4 text-sm text-u20-gray-light mb-3">
-                        <span className="flex items-center gap-1.5">
-                            <Clock className="w-4 h-4" />
-                            {time} Uhr
-                        </span>
-                        {venue && (
-                            <span className="flex items-center gap-1.5 line-clamp-1">
-                                <MapPin className="w-4 h-4" />
-                                {decodeHtmlEntities(venue)}
-                            </span>
-                        )}
-                    </div>
-
-                    {cleanExcerpt && (
-                        <p className="text-u20-gray line-clamp-2 text-sm">
-                            {cleanExcerpt}
-                        </p>
-                    )}
-                </CardContent>
-
-            </Card>
-        </Link>
-    )
+  return (
+    <article className="event-card">
+      <div className="event-photo">
+        <div className="ph-pattern" />
+        <div className="ph-glyph">{day}</div>
+        <div className="event-date-badge">
+          <span className="day">{day}</span>
+          <span className="mon">{mon}</span>
+        </div>
+      </div>
+      <div className="event-body">
+        <div className="event-meta">
+          <span>{time} Uhr</span>
+          {venue && <span>{decodeHtmlEntities(venue)}</span>}
+        </div>
+        <h3 className="event-title">{decodedTitle}</h3>
+        {cleanExcerpt && (
+          <p className="event-desc">{cleanExcerpt}</p>
+        )}
+        <div className="event-foot">
+          <span className="event-price">{price}</span>
+          <Link className="event-link" href={`/veranstaltungen/${slug}`}>
+            Mehr Info
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
 }

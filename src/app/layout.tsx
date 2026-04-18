@@ -1,18 +1,35 @@
 import type { Metadata } from "next";
-import { Righteous, Inter } from "next/font/google";
+import { Archivo, Archivo_Black, Caveat, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
-const righteous = Righteous({
-  weight: "400",
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-righteous",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-archivo",
+  display: "swap",
 });
 
-const inter = Inter({
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: "400",
+  variable: "--font-archivo-black",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,10 +38,11 @@ export const metadata: Metadata = {
     template: "%s | U20 Poetry Slam Wien",
   },
   description:
-    "Poetry Slam von und mit der jungen Generation in Wien. Kreativ, laut, lebendig und auf den Punkt.",
+    "Poetry Slam für alle unter 20 in Wien. Monatlich im DSCHUNGEL Wien — Bühne, Bewerb, Workshop. Für Slammer:innen, Publikum und Schulen.",
   openGraph: {
     title: "U20 Poetry Slam Wien",
-    description: "Poetry Slam von und mit der jungen Generation in Wien.",
+    description:
+      "Poetry Slam für alle unter 20 in Wien. Monatlich im DSCHUNGEL Wien.",
     type: "website",
     locale: "de_AT",
   },
@@ -35,10 +53,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const fontVars = [
+    archivo.variable,
+    archivoBlack.variable,
+    caveat.variable,
+    spaceMono.variable,
+  ].join(" ");
+
   return (
-    <html lang="de" className="scroll-smooth">
+    <html lang="de-AT" className="scroll-smooth">
       <body
-        className={`${righteous.variable} ${inter.variable} font-sans antialiased flex flex-col min-h-screen`}
+        className={`${fontVars} font-sans antialiased flex flex-col min-h-screen bg-u-bg text-u-ink`}
       >
         <SiteHeader />
         <main className="flex-1">{children}</main>
