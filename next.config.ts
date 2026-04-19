@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         hostname: 'u20poetryslam.at',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*.cdninstagram.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.fbcdn.net',
+        pathname: '/**',
+      },
     ],
   },
 };

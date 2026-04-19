@@ -5,8 +5,10 @@ import { NewsCard } from "@/components/sections/NewsCard";
 import { TeamCard } from "@/components/sections/TeamCard";
 import { FaqItem } from "@/components/sections/FaqItem";
 import { SignupForm } from "@/components/sections/SignupForm";
+import { InstagramGrid } from "@/components/sections/InstagramGrid";
 import { fetchWP } from "@/lib/wp/api";
 import { WPPost, WpEvent } from "@/lib/wp/types";
+import { fetchInstagramPosts } from "@/lib/instagram";
 
 async function getUpcomingEvents() {
   try {
@@ -54,9 +56,10 @@ const TEAM_FALLBACK = [
 ];
 
 export default async function HomePage() {
-  const [events, news] = await Promise.all([
+  const [events, news, igPosts] = await Promise.all([
     getUpcomingEvents(),
     getLatestNews(),
+    fetchInstagramPosts(6),
   ]);
 
   return (
@@ -424,27 +427,33 @@ export default async function HomePage() {
               Behind-the-Mic.
             </p>
           </ScrollReveal>
-          <ScrollReveal className="ig-grid">
-            {[
-              { v: "v1", label: "Slam Recap" },
-              { v: "v2", label: "Save the Date" },
-              { v: "v3", label: "Backstage" },
-              { v: "v4", label: "Workshop" },
-              { v: "v5", label: "Poet:in d. Mts" },
-              { v: "v6", label: "Tickets live" },
-            ].map((t) => (
-              <a
-                key={t.v}
-                className={`ig-tile ${t.v}`}
-                href="https://www.instagram.com/u20slamwien"
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Instagram: ${t.label}`}
-              >
-                {t.label}
-                <span className="igh">@u20slamwien</span>
-              </a>
-            ))}
+          <ScrollReveal>
+            {igPosts.length > 0 ? (
+              <InstagramGrid posts={igPosts} />
+            ) : (
+              <div className="ig-grid">
+                {[
+                  { v: "v1", label: "Slam Recap" },
+                  { v: "v2", label: "Save the Date" },
+                  { v: "v3", label: "Backstage" },
+                  { v: "v4", label: "Workshop" },
+                  { v: "v5", label: "Poet:in d. Mts" },
+                  { v: "v6", label: "Tickets live" },
+                ].map((t) => (
+                  <a
+                    key={t.v}
+                    className={`ig-tile ${t.v}`}
+                    href="https://www.instagram.com/u20slamwien"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Instagram: ${t.label}`}
+                  >
+                    {t.label}
+                    <span className="igh">@u20slamwien</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </ScrollReveal>
         </div>
       </section>

@@ -728,6 +728,19 @@
     background: linear-gradient(135deg, #2a1830, #0f0812);
     overflow: hidden;
   }
+  .news-photo img {
+    transition: transform 0.3s ease;
+  }
+  .news-card:hover .news-photo img { transform: scale(1.05); }
+  .news-ig-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: grid; place-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
   .news-photo .ph-pattern {
     position: absolute; inset: 0;
     background:
@@ -833,6 +846,7 @@
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 0.75rem;
   }
+  /* Fallback-Tiles (ohne API) */
   .ig-tile {
     aspect-ratio: 1 / 1;
     border-radius: var(--u-radius);
@@ -866,6 +880,53 @@
   .ig-tile.v4 { background: linear-gradient(135deg, var(--u-purple), #0f0812); }
   .ig-tile.v5 { background: linear-gradient(135deg, var(--u-magenta), var(--u-orange)); color: var(--u-ink); }
   .ig-tile.v6 { background: linear-gradient(135deg, #0f0812, var(--u-purple)); }
+
+  /* Echte Instagram-Posts (mit API) */
+  .ig-tile-real {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--u-radius);
+    position: relative;
+    overflow: hidden;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  .ig-tile-real:hover { transform: scale(1.02); }
+  .ig-tile-real img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .ig-tile-real:hover img { transform: scale(1.06); }
+  .ig-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(26, 26, 26, 0.75) 0%, rgba(26, 26, 26, 0) 50%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .ig-tile-real:hover .ig-overlay { opacity: 1; }
+  .ig-caption {
+    color: var(--u-paper);
+    font-size: 0.78rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ig-video-badge, .ig-carousel-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--u-paper);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.75rem;
+    backdrop-filter: blur(4px);
+  }
 
   /* =================================================================== */
   /* FAQ                                                                 */
