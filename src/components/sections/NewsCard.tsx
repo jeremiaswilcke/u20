@@ -17,7 +17,8 @@ export function NewsCard({
   category = "Aktuelles",
 }: NewsCardProps) {
   const decodedTitle = decodeHtmlEntities(title);
-  const cleanExcerpt = stripHtml(excerpt);
+  const rawExcerpt = stripHtml(excerpt);
+  const cleanExcerpt = rawExcerpt.length > 120 ? rawExcerpt.slice(0, 120) + "…" : rawExcerpt;
   const formattedDate = new Date(date).toLocaleDateString("de-AT", {
     day: "2-digit",
     month: "long",

@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="container-u">
         <div className="footer-grid">
           <div className="footer-brand">
-            <BrandLogo />
+            <BrandLogo invert />
             <p>
               Poetry Slam für alle unter 20 in Wien. Monatlich im DSCHUNGEL
               Wien — Bühne, Bewerb, Workshop, Community.

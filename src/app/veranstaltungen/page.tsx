@@ -175,7 +175,7 @@ export default async function VeranstaltungenPage() {
       mon: MONTHS[d.getMonth()],
       type,
       title: decodeHtmlEntities(e.title),
-      desc: e.description ? stripHtml(e.description).slice(0, 180) : "",
+      desc: e.description ? stripHtml(e.description).slice(0, 120) + "…" : "",
       time: `${d.toLocaleTimeString("de-AT", {
         hour: "2-digit",
         minute: "2-digit",
@@ -200,7 +200,7 @@ export default async function VeranstaltungenPage() {
           return {
             date: d.toLocaleDateString("de-AT"),
             title: decodeHtmlEntities(e.title),
-            descHtml: e.description ? stripHtml(e.description).slice(0, 140) : "",
+            descHtml: e.description ? stripHtml(e.description).slice(0, 100) + "…" : "",
             meta: [e.venue?.venue ? decodeHtmlEntities(e.venue.venue) : "Dschungel Wien"],
           };
         })

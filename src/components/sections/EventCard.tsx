@@ -32,7 +32,8 @@ export function EventCard({
   });
 
   const decodedTitle = decodeHtmlEntities(title);
-  const cleanExcerpt = excerpt ? stripHtml(excerpt) : "";
+  const rawExcerpt = excerpt ? stripHtml(excerpt) : "";
+  const cleanExcerpt = rawExcerpt.length > 120 ? rawExcerpt.slice(0, 120) + "…" : rawExcerpt;
 
   return (
     <article className="event-card">
