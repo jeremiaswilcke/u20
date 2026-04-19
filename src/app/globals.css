@@ -37,7 +37,7 @@
     --u-shadow-md:   0 16px 40px -16px rgba(26, 26, 26, 0.28);
 
     /* Layout */
-    --u-section-py:  clamp(3.5rem, 8vw, 7rem);
+    --u-section-py:  clamp(2rem, 4vw, 3.5rem);
     --u-container:   78rem;
     --u-pad-x:       clamp(1.25rem, 4vw, 2.5rem);
   }
@@ -122,7 +122,7 @@
     padding-right: var(--u-pad-x);
   }
   section.u-section { padding-top: var(--u-section-py); padding-bottom: var(--u-section-py); }
-  .section-tight { padding-top: clamp(2.5rem, 5vw, 4rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .section-tight { padding-top: clamp(1.5rem, 3vw, 2.5rem); padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
   .bg-soft { background: var(--u-paper); }
 
   .eyebrow {
@@ -220,7 +220,7 @@
   .hero { padding: 0; }
   .hero-photo {
     position: relative;
-    min-height: clamp(520px, 74vh, 760px);
+    min-height: clamp(420px, 60vh, 600px);
     background:
       linear-gradient(135deg, rgba(26, 14, 30, 0.78) 0%, rgba(26, 14, 30, 0.55) 45%, rgba(225, 26, 124, 0.35) 100%),
       radial-gradient(ellipse at 25% 30%, rgba(243, 144, 25, 0.35), transparent 55%),
@@ -242,10 +242,10 @@
   .hero-content {
     position: relative; z-index: 2;
     display: grid; grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2rem, 5vw, 5rem);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
     align-items: center;
-    padding-top: clamp(3rem, 6vw, 5rem);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3.5rem);
   }
   @media (max-width: 860px) { .hero-content { grid-template-columns: 1fr; } }
 
@@ -395,7 +395,7 @@
   /* =================================================================== */
   /* SECTION TITLE                                                       */
   /* =================================================================== */
-  .section-title-wrap { margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 50ch; }
+  .section-title-wrap { margin-bottom: clamp(1.25rem, 2.5vw, 2rem); max-width: 50ch; }
   .section-title-wrap h2 { color: var(--u-magenta); margin-bottom: 0.75rem; }
   .section-title-wrap p { font-size: clamp(1rem, 1.2vw, 1.1rem); color: var(--u-ink-soft); margin: 0; }
 
@@ -495,10 +495,10 @@
     background: var(--u-ink);
     color: var(--u-paper);
     border-radius: var(--u-radius-lg);
-    padding: clamp(2rem, 5vw, 4rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     display: grid;
     grid-template-columns: 1.35fr 1fr;
-    gap: clamp(2rem, 4vw, 3.5rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -576,7 +576,7 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
+    gap: clamp(1.5rem, 3vw, 3rem);
     align-items: start;
   }
   @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
@@ -788,10 +788,10 @@
   .form-block {
     background: var(--u-paper);
     border-radius: var(--u-radius-lg);
-    padding: clamp(2rem, 5vw, 4rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     display: grid;
     grid-template-columns: 1fr 1.15fr;
-    gap: clamp(2rem, 4vw, 4rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     border: 1px solid var(--u-line);
   }
   @media (max-width: 820px) { .form-block { grid-template-columns: 1fr; padding: 2rem; } }
@@ -972,14 +972,14 @@
   .footer {
     background: var(--u-ink);
     color: var(--u-paper);
-    padding: clamp(3rem, 5vw, 4rem) 0 2rem;
+    padding: clamp(2rem, 3vw, 3rem) 0 1.5rem;
   }
   .footer .brand { color: var(--u-paper); }
   .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
@@ -1120,7 +1120,7 @@
   .venue-block {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: center;
   }
   @media (max-width: 820px) { .venue-block { grid-template-columns: 1fr; } }
@@ -1170,7 +1170,7 @@
   /* PAGE HERO (subpages)                                                */
   /* =================================================================== */
   .page-hero {
-    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3.5rem);
+    padding: clamp(2rem, 4vw, 3rem) 0 clamp(1.25rem, 2.5vw, 2rem);
     background: var(--u-paper);
     border-bottom: 1px solid var(--u-line);
   }
@@ -1363,7 +1363,7 @@
   .founder-block {
     display: grid;
     grid-template-columns: 0.9fr 1.3fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: center;
   }
   @media (max-width: 820px) { .founder-block { grid-template-columns: 1fr; } }
