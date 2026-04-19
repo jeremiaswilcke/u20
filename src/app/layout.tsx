@@ -1,34 +1,20 @@
 import type { Metadata } from "next";
-import { Archivo, Archivo_Black, Caveat, Space_Mono } from "next/font/google";
+import { Righteous, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-const archivoBlack = Archivo_Black({
+const righteous = Righteous({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-archivo-black",
+  variable: "--font-righteous",
   display: "swap",
 });
 
-const caveat = Caveat({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-caveat",
-  display: "swap",
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -54,10 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const fontVars = [
-    archivo.variable,
-    archivoBlack.variable,
-    caveat.variable,
-    spaceMono.variable,
+    righteous.variable,
+    inter.variable,
   ].join(" ");
 
   return (

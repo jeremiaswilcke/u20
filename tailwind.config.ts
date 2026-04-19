@@ -26,10 +26,10 @@ export default {
                 },
             },
             fontFamily: {
-                display: ["var(--font-archivo-black)", "Arial Black", "system-ui", "sans-serif"],
-                sans: ["var(--font-archivo)", "system-ui", "-apple-system", "sans-serif"],
-                hand: ["var(--font-caveat)", "cursive"],
-                mono: ["var(--font-space-mono)", "Courier New", "monospace"],
+                display: ["var(--font-righteous)", "Arial Black", "system-ui", "sans-serif"],
+                sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
+                hand: ["var(--font-righteous)", "cursive"],
+                mono: ["var(--font-inter)", "Courier New", "monospace"],
             },
             borderRadius: {
                 u: "14px",

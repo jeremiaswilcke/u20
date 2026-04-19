@@ -128,7 +128,7 @@ export default function DatenschutzPage() {
 
             <h3>Schriften (Google Fonts)</h3>
             <p>
-              Wir verwenden Archivo, Archivo Black, Caveat und Space Mono.
+              Wir verwenden Righteous und Inter.
               Diese Schriften werden lokal mit der Seite ausgeliefert
               (Self-Hosting via <code>next/font</code>). Es findet{" "}
               <strong>keine Verbindung zu Google-Servern</strong> aus deinem

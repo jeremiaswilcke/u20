@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const GALLERY = [
-  { pc1: "#E11A7C", pc2: "#F39019", overlay: "Mikro · Spot", cap: "U20 Slam · Feb 2025 · Finale" },
-  { pc1: "#3D2A5A", pc2: "#E11A7C", overlay: "Publikum · Bühne 1", cap: "Saisonstart · Sep 2024" },
-  { pc1: "#F39019", pc2: "#F6D94A", overlay: "Workshop · schreib' KLASSE!", cap: "Annalena & Gruppe · Okt 2024" },
-  { pc1: "#2F5D3E", pc2: "#F39019", overlay: "Moderation · Gabo", cap: "U20 Slam #7 · Apr 2024" },
-  { pc1: "#1a1412", pc2: "#E11A7C", overlay: "WNB-Landesmeisterschaft 2025", cap: "U20 WNB-Slam · Feb 2025 · ausverkauft", wide: true },
-  { pc1: "#E11A7C", pc2: "#3D2A5A", overlay: "Backstage", cap: "Vor dem Auftritt" },
+  { img: "/images/finale-2025.jpg", overlay: "Mikro · Spot", cap: "U20 Slam · Feb 2025 · Finale" },
+  { img: "/images/publikum.jpg", overlay: "Publikum · Bühne 1", cap: "WNB Slam · Feb 2024" },
+  { img: "/images/alle-teilnehmenden.png", overlay: "Workshop · schreib' KLASSE!", cap: "Alle Teilnehmenden" },
+  { img: "/images/niklas-berger.jpg", overlay: "Niklas Berger", cap: "U20 WN-Slam · Mär 2024" },
+  { img: "/images/meisterschaft-2024.jpg", overlay: "WNB-Landesmeisterschaft", cap: "U20 Meisterschaften · Apr 2024 · Weixelbraun", wide: true },
+  { img: "/images/stars-2024.jpg", overlay: "Stars des Abends", cap: "WN-Slam · Mär 2024" },
 ];
 
 const VIDEOS = [
@@ -141,12 +141,9 @@ export default function MedienPage() {
               <figure
                 key={i}
                 className={`g-tile reveal ${g.wide ? "wide" : ""}`.trim()}
-                style={{
-                  ["--pc1" as never]: g.pc1,
-                  ["--pc2" as never]: g.pc2,
-                }}
               >
-                <div className="ph">
+                <div className="ph" style={{ background: "none" }}>
+                  <img src={g.img} alt={g.overlay} style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} />
                   <div className="ph-overlay">{g.overlay}</div>
                 </div>
                 <figcaption>{g.cap}</figcaption>

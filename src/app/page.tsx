@@ -100,10 +100,8 @@ export default async function HomePage() {
               <div className="ring" />
               <div className="ring r2" />
               <div className="ring r3" />
-              <div className="center">
-                U20
-                <br />
-                <span style={{ fontSize: "0.45em", opacity: 0.85 }}>Slam</span>
+              <div className="center" style={{ background: "transparent", boxShadow: "none" }}>
+                <img src="/u20logo.png" alt="U20 Poetry Slam Wien" style={{ width: "85%", height: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }} />
               </div>
             </div>
           </div>
@@ -486,6 +484,15 @@ export default async function HomePage() {
   );
 }
 
+const EVENT_IMAGES = [
+  "/images/feature-2025.jpg",
+  "/images/simon.jpg",
+  "/images/helmut-prochart.jpg",
+  "/images/stars-2024.jpg",
+];
+
+let eventImgIdx = 0;
+
 function StaticEventCard({
   day,
   mon,
@@ -501,11 +508,12 @@ function StaticEventCard({
   desc: string;
   href: string;
 }) {
+  const img = EVENT_IMAGES[eventImgIdx++ % EVENT_IMAGES.length];
   return (
     <article className="event-card">
       <div className="event-photo">
+        <img src={img} alt={title} />
         <div className="ph-pattern" />
-        <div className="ph-glyph">{day}</div>
         <div className="event-date-badge">
           <span className="day">{day}</span>
           <span className="mon">{mon}</span>
