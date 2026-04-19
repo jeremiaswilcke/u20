@@ -45,9 +45,9 @@ export default function RootLayout({
   ].join(" ");
 
   return (
-    <html lang="de-AT" className="scroll-smooth">
+    <html lang="de-AT" className={`scroll-smooth ${fontVars}`}>
       <body
-        className={`${fontVars} font-sans antialiased flex flex-col min-h-screen bg-u-bg text-u-ink`}
+        className="font-sans antialiased flex flex-col min-h-screen bg-u-bg text-u-ink"
       >
         <SiteHeader />
         <main className="flex-1">{children}</main>
