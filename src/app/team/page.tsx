@@ -19,7 +19,7 @@ const MEMBERS: Array<{
     name: "Annalena Schuh",
     role: "Workshop · Slam",
     bio: "Volksschullehrerin, Slammerin, Berge & Seen. Lieblingsbuchstabe: K. Hauptverantwortlich für schreib' KLASSE! — den Workshop vor dem Slam.",
-    image: "/images/team-alle.jpg",
+    image: "/images/team-annalena.jpg",
     meta: ["Wien"],
   },
   {

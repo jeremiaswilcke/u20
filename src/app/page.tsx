@@ -47,7 +47,7 @@ const TEAM_FALLBACK = [
     role: "Workshop · Slam",
     description:
       "Volksschullehrerin, Slammerin, Berge & Seen. Lieblingsbuchstabe: K.",
-    image: "/images/team-alle.jpg",
+    image: "/images/team-annalena.jpg",
   },
   {
     name: "Jeremias Wilcke",
