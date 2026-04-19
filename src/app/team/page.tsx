@@ -5,57 +5,29 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export const metadata: Metadata = {
   title: "Unser Team",
   description:
-    "Das Team hinter dem U20 Poetry Slam Wien — Moderation, Workshop, Technik, Social.",
+    "Das Team hinter dem U20 Poetry Slam Wien — Moderation, Workshop, Technik.",
 };
 
 const MEMBERS: Array<{
   name: string;
   role: string;
   bio: string;
-  initials: string;
-  color: string;
+  image?: string;
   meta: string[];
-  dark?: boolean;
 }> = [
   {
-    name: "Gabo Moyano",
-    role: "Moderator · Host",
-    bio: "Slampoet seit 2018, Architekt von Beruf, Witz-Maschine von Geburt an. Moderiert mit einem Timing, das man nicht lehren kann.",
-    initials: "GB",
-    color: "var(--u-orange)",
-    meta: ["Wien", "seit 2022"],
-  },
-  {
-    name: "BraVe",
-    role: "Moderation · Workshop",
-    bio: "Lyrikerin, Spoken-Word-Künstlerin, macht laute Texte und leise Pausen. Unterrichtet Schreibwerkstatt an Schulen in ganz NÖ.",
-    initials: "BV",
-    color: "var(--u-magenta)",
-    meta: ["Wien / St. Pölten", "seit 2021"],
-  },
-  {
     name: "Annalena Schuh",
-    role: "Workshop-Leitung",
-    bio: "Hauptverantwortlich für schreib' KLASSE! — den Workshop vor dem Slam. Studiert Literaturwissenschaft und schreibt ihren ersten Roman.",
-    initials: "AS",
-    color: "var(--u-purple)",
-    meta: ["Wien", "seit 2023"],
+    role: "Workshop · Slam",
+    bio: "Volksschullehrerin, Slammerin, Berge & Seen. Lieblingsbuchstabe: K. Hauptverantwortlich für schreib' KLASSE! — den Workshop vor dem Slam.",
+    image: "/images/team-alle.jpg",
+    meta: ["Wien"],
   },
   {
-    name: "Jonas Kreisky",
-    role: "Technik · Ton",
-    bio: "Kümmert sich darum, dass das Mikro klingt, das Licht sitzt und nichts brennt. War selbst U20-Slammer 2019.",
-    initials: "JK",
-    color: "#6A9BD1",
-    meta: ["Wien", "seit 2023"],
-  },
-  {
-    name: "Mira Karner",
-    role: "Social Media · Fotos",
-    bio: "Dokumentiert, was passiert — und postet es so, dass man nicht wegschauen kann. Studentin, Fotografin, Slam-Zuschauerin seit sie 12 war.",
-    initials: "MK",
-    color: "#2F5D3E",
-    meta: ["Wien", "seit 2024"],
+    name: "Jeremias Wilcke",
+    role: "Web · Bild · Ton",
+    bio: "Erlebnis-, Zirkus- & Prozesspädagoge. Kümmert sich um Website, Aufnahmen und alles, was Strom braucht.",
+    image: "/images/team-jeremias.jpg",
+    meta: ["Wien"],
   },
 ];
 
@@ -63,7 +35,7 @@ const TIMELINE = [
   {
     year: "2011",
     title: "Gründung",
-    desc: "Der allererste U20 Slam findet im Dschungel Wien statt. 14 Slammer:innen, 80 Zuschauer:innen, kein Zurück.",
+    desc: "Der allererste U20 Slam findet im Dschungel Wien statt. 14 Slammer, 80 Zuschauer, kein Zurück.",
   },
   {
     year: "2014",
@@ -79,11 +51,6 @@ const TIMELINE = [
     year: "2020",
     title: "Digital-Saison",
     desc: "Slam im Wohnzimmer: über Zoom, mit Voting per Chat. Nicht perfekt, aber das Gefühl war da.",
-  },
-  {
-    year: "2023",
-    title: "Neues Team",
-    desc: "Gabo, BraVe und Annalena kommen dazu. Die Crew wird größer, die Bühne auch.",
   },
   {
     year: "2026",
@@ -115,9 +82,19 @@ export default function TeamPage() {
         <div className="container-u">
           <div className="founder-block">
             <ScrollReveal className="founder-photo">
-              <div className="photo-frame">
-                <div className="photo-initials">AW</div>
-                <span className="photo-label">Adina Wilcke</span>
+              <div className="photo-frame" style={{ background: "none" }}>
+                <img
+                  src="/images/team-adina.jpg"
+                  alt="Adina Wilcke"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "var(--u-radius-lg)",
+                  }}
+                />
               </div>
               <div className="founder-tags">
                 <span className="tag">Gründerin</span>
@@ -140,7 +117,7 @@ export default function TeamPage() {
               </p>
               <p>
                 Ihre Workshops sind schnell, ehrlich, unsentimental — und
-                trotzdem schafft sie es, dass am Ende jede:r einen Text in der
+                trotzdem schafft sie es, dass am Ende jeder einen Text in der
                 Hand hält.
               </p>
               <blockquote className="founder-quote">
@@ -156,24 +133,33 @@ export default function TeamPage() {
       <section className="bg-soft u-section">
         <div className="container-u">
           <ScrollReveal className="section-title-wrap">
-            <h2>
-              Das Moderations-
-              <br />
-              und Workshop-Team.
-            </h2>
+            <h2>Das Team.</h2>
             <p>
-              Wir wechseln uns ab — so gibt&apos;s bei jedem Slam ein bisschen
-              anderen Vibe. Alle sind aktive Slammer:innen.
+              Zu dritt halten wir den U20 Slam am Laufen — Moderation,
+              Workshop, Technik, alles aus einer Hand.
             </p>
           </ScrollReveal>
           <div className="team-grid">
             {MEMBERS.map((m) => (
               <article key={m.name} className="team-card reveal">
-                <div
-                  className="team-photo"
-                  style={{ ["--tc" as never]: m.color }}
-                >
-                  <span className="team-initials">{m.initials}</span>
+                <div className="team-photo">
+                  {m.image ? (
+                    <img
+                      src={m.image}
+                      alt={m.name}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <span className="team-initials">
+                      {m.name.split(/\s+/).map(p => p[0]).join("").slice(0, 2).toUpperCase()}
+                    </span>
+                  )}
                 </div>
                 <div className="team-body">
                   <h3>{m.name}</h3>
@@ -187,33 +173,6 @@ export default function TeamPage() {
                 </div>
               </article>
             ))}
-            <article className="team-card reveal">
-              <div
-                className="team-photo"
-                style={{
-                  background: "var(--u-ink)",
-                  color: "var(--u-paper)",
-                }}
-              >
-                <span
-                  className="team-initials"
-                  style={{ color: "var(--u-orange)" }}
-                >
-                  +
-                </span>
-              </div>
-              <div className="team-body">
-                <h3>Und du?</h3>
-                <span className="team-role">Mitmachen</span>
-                <p>
-                  Wir suchen immer wieder Leute, die anpacken — in Technik,
-                  Hosting, Social oder Organisation. Schreib uns einfach.
-                </p>
-                <div className="team-meta">
-                  <span>info@u20poetryslam.at</span>
-                </div>
-              </div>
-            </article>
           </div>
         </div>
       </section>

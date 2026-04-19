@@ -2,6 +2,7 @@ interface TeamCardProps {
   name: string;
   role: string;
   description?: string;
+  image?: string;
 }
 
 function getInitials(name: string): string {
@@ -14,12 +15,25 @@ function getInitials(name: string): string {
     .toUpperCase();
 }
 
-export function TeamCard({ name, role, description }: TeamCardProps) {
+export function TeamCard({ name, role, description, image }: TeamCardProps) {
   return (
     <article className="team-card">
       <div className="team-photo">
-        <span className="initials">{getInitials(name)}</span>
-        <span className="ph-cap">Foto: {name}</span>
+        {image ? (
+          <img
+            src={image}
+            alt={name}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          <span className="initials">{getInitials(name)}</span>
+        )}
       </div>
       <div className="team-info">
         <h3>{name}</h3>

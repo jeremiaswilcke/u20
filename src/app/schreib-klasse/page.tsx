@@ -41,7 +41,7 @@ const TESTIMONIALS = [
   {
     quote:
       "Ich hab den Text in 40 Minuten geschrieben. Im Slam danach hab ich Platz 3 gemacht. Was zur Hölle.",
-    who: "Mira, 16 · Wien",
+    who: "Teilnehmerin, 16 · Wien",
   },
   {
     quote: "Bin nur hin, weil ein Freund mich mitgeschleppt hat. Jetzt geh ich jeden Monat.",

@@ -200,8 +200,9 @@ export default function FaqPage() {
               oder anonymisieren. Video nur mit expliziter Zustimmung.
             </FaqItem>
             <FaqItem question="Wer steckt hinter dem U20 Slam?">
-              Adina Wilcke (Gründerin), Gabo Moyano, BraVe, Annalena Schuh
-              &amp; Team. Details: <Link href="/team">Unser Team</Link>.
+              Adina Wilcke (Gründerin &amp; Moderation), Annalena Schuh
+              (Workshop) und Jeremias Wilcke (Web &amp; Technik).
+              Details: <Link href="/team">Unser Team</Link>.
             </FaqItem>
             <FaqItem question="Wie kann ich sonst helfen?">
               Spenden, Weitersagen, als Volunteer mitwirken. Einfach mailen —

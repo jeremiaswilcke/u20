@@ -149,7 +149,7 @@ const FALLBACK_PAST = [
   {
     date: "19.04.2024",
     title: "U20 Slam #7",
-    descHtml: "Moderiert von Gabo und BraVe. Davor Workshop mit Annalena.",
+    descHtml: "Moderiert von Adina. Davor Workshop mit Annalena.",
     meta: ["Slam", "6 Slammer:innen"],
   },
   {

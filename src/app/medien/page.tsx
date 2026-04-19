@@ -132,7 +132,7 @@ export default function MedienPage() {
             <h2>Fotostrecke.</h2>
             <p>
               Aus den letzten Slams und Workshops. Alle Fotos © Petra
-              Weixelbraun · Mira Karner. Für redaktionelle Zwecke frei bei
+              Weixelbraun. Für redaktionelle Zwecke frei bei
               Quellenangabe.
             </p>
           </ScrollReveal>

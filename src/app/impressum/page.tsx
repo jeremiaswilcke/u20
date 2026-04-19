@@ -81,7 +81,7 @@ export default function ImpressumPage() {
               und Audio — unterliegen dem Urheberrecht. Weiterverbreitung,
               Veröffentlichung und Vervielfältigung bedürfen der
               schriftlichen Zustimmung. Pressefotos sind für redaktionelle
-              Zwecke bei Quellenangabe (© Petra Weixelbraun · Mira Karner) frei
+              Zwecke bei Quellenangabe (© Petra Weixelbraun) frei
               nutzbar.
             </p>
           </Block>

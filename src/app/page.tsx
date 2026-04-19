@@ -40,18 +40,21 @@ const TEAM_FALLBACK = [
     role: "Leitung · Moderation",
     description:
       "Künstlerin, Pädagogin, seit 2014 Kopf der U20-Arbeit in Wien. Steht selbst auf europäischen Bühnen.",
+    image: "/images/team-adina.jpg",
   },
   {
     name: "Annalena Schuh",
     role: "Workshop · Slam",
     description:
       "Volksschullehrerin, Slammerin, Berge & Seen. Lieblingsbuchstabe: K.",
+    image: "/images/team-alle.jpg",
   },
   {
-    name: "Jeremias",
+    name: "Jeremias Wilcke",
     role: "Web · Bild · Ton",
     description:
       "Erlebnis-, Zirkus- & Prozesspädagoge. Kümmert sich um Website, Aufnahmen und alles, was Strom braucht.",
+    image: "/images/team-jeremias.jpg",
   },
 ];
 
@@ -337,22 +340,9 @@ export default async function HomePage() {
                 name={m.name}
                 role={m.role}
                 description={m.description}
+                image={m.image}
               />
             ))}
-            <article className="team-card">
-              <div className="team-photo">
-                <span className="initials">?</span>
-                <span className="ph-cap">Coming soon</span>
-              </div>
-              <div className="team-info">
-                <h3>Überraschung!</h3>
-                <div className="role">Bald im Team</div>
-                <p className="bio">
-                  Jemand Neues stößt zu uns. Mehr verraten wir hier — sobald
-                  es offiziell ist.
-                </p>
-              </div>
-            </article>
           </div>
         </div>
       </section>
